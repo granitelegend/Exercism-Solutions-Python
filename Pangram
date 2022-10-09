@@ -1,4 +1,4 @@
-# Penagram problem (using sets)
+# Penagram problem (using sets and no imports)
 # There probably is a more elegant solution
 
 alphabet_list = list("abcdefghijklmnopqrstuvwxyz")
