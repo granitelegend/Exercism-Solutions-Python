@@ -2,10 +2,8 @@
 
 giveString = str(input("Enter a text of your choice: "))
 revText = ""
-textList = []
 
-for x in giveString:
-    textList.append(x)
+textList = list(giveString)
 
 for y in textList:
     revText = y + revText
