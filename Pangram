@@ -1,5 +1,6 @@
-# Penagram problem (using sets and no imports)
+# Pangram problem (using sets and no imports)
 # There probably is a more elegant solution
+# Problem does not ask for 'perfect' pangrams
 
 alphabet_list = list("abcdefghijklmnopqrstuvwxyz")
 sentenceCreate = str((input("Enter a word: ")).lower())
