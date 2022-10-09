@@ -1,0 +1,8 @@
+# Two Fer problem, Exercism
+
+giveName = str(input("Enter a name: "))
+
+if giveName != "":
+    print("One for " + giveName + "," + " one for me")
+elif giveName == "":
+    print("One for you, one for me")
