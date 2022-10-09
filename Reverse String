@@ -1,0 +1,13 @@
+# Reverse String problem
+
+giveString = str(input("Enter a text of your choice: "))
+revText = ""
+textList = []
+
+for x in giveString:
+    textList.append(x)
+
+for y in textList:
+    revText = y + revText
+
+print(revText)
