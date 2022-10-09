@@ -1,0 +1,22 @@
+# Penagram problem (using sets)
+# There probably is a more elegant solution
+
+alphabet_list = list("abcdefghijklmnopqrstuvwxyz")
+sentenceCreate = str((input("Enter a word: ")).lower())
+sentenceIn = list(sentenceCreate)
+
+# Checks if all letters occur once
+
+for x in sentenceIn:
+    if (x in alphabet_list) and int(sentenceIn.count(x)) != 1: 
+        break
+    else:
+        continue
+
+# Checks if the union of the letters of the word and the alphabet is equal to the alphabet
+
+if set(alphabet_list) == set(alphabet_list).intersection(set(alphabet_list), set(sentenceCreate)):
+    print("Is a pangram")
+    exit()
+
+print("Not a pangram")
