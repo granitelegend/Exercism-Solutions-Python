@@ -1,0 +1,8 @@
+# Leap problem
+
+enterYear = int(input("Enter a year: "))
+
+if (enterYear % 4 == 0 and enterYear % 100 != 0) or enterYear % 400 == 0:
+    print(str(enterYear) + " is a leap year")
+else:
+    print(str(enterYear) + " is not a leap year")
