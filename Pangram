@@ -1,23 +1,7 @@
-# Pangram problem (using sets and no imports)
-# There probably is a more elegant solution
-# Problem does not ask for 'perfect' pangrams
+# Pangram problem (not so original solution using sets and no imports)
+# The problem can be reduced to sets, due to it removing duplicates and thus being able to compare the sets since
+# a letter should only appear once, the cardinality of both sets should be the same for the word to be a pangram.
 
-alphabet_list = list("abcdefghijklmnopqrstuvwxyz")
-sentenceCreate = str((input("Enter a word: ")).lower())
-sentenceIn = list(sentenceCreate)
+def is_pangram(word):
+    return len(set("abcdefghijklmnopqrstuvwxyz")) == len(set((word.lower()).replace(" ", "").replace(",", "")))
 
-# Checks if all letters occur once
-
-for x in sentenceIn:
-    if (x in alphabet_list) and int(sentenceIn.count(x)) != 1: 
-        break
-    else:
-        continue
-
-# Checks if the union of the letters of the word and the alphabet is equal to the alphabet
-
-if set(alphabet_list) == set(alphabet_list).intersection(set(alphabet_list), set(sentenceCreate)):
-    print("Is a pangram")
-    exit()
-
-print("Not a pangram")
