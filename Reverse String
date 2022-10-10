@@ -1,11 +1,9 @@
 # Reverse String problem
 
-giveString = str(input("Enter a text of your choice: "))
-revText = ""
+def reverse_word(word):
+    wordL = list(word)
+    revWord = ""
+    for y in wordL:
+        revWord = y + revWord
+    return revWord
 
-textList = list(giveString)
-
-for y in textList:
-    revText = y + revText
-
-print(revText)
