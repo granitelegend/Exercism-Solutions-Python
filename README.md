@@ -1,1 +1,1 @@
-Very non-elegant solutions to excercism problems
+Tring to come up with solutions to excercism problems.
