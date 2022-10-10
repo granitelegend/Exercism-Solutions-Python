@@ -1,0 +1,8 @@
+# Grains problem
+# Doubling the grains starting with 1 grain, formula in closed form is 2^(n-1) with
+# Code simplified even more by removing exception
+
+def grains(sqre):
+    if sqre > 64 or sqre < 1:
+        raise ValueError("Square must be between 1 and 64")
+    return 2 ** (sqre - 1), int((2 ** sqre - 1))
