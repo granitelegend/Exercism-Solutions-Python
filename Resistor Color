@@ -1,14 +1,9 @@
 # Resistor Color
 
-resistorDict = {"Black": 0, "Brown": 1, "Red": 2, "Orange": 3, "Yellow": 4, "Green": 5, "Blue": 6, "Violet": 7,
-                "Grey": 8, "White": 9}
-
-resistInput = str(input("Type a color for the resistor or type 'List' for the color of all resistors: "))
-
-if resistInput in resistorDict:
-    print(resistorDict[resistInput])
-elif resistInput == "List":
-    for x in resistorDict:
-        print(x)
-else:
-    print("Not a resistor color")
+def check_resistor(color):
+    resistorDict = {"Black": 0, "Brown": 1, "Red": 2, "Orange": 3, "Yellow": 4, "Green": 5, "Blue": 6, "Violet": 7,
+                    "Grey": 8, "White": 9}
+    if color in resistorDict:
+        return resistorDict[color]
+    else:
+        return list(resistorDict)
