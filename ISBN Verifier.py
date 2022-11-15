@@ -2,6 +2,7 @@
 # Contains Verifier and Converter
 # Notes:
 # Conversion only works if the ISBN can be verified as True.
+# ISBN converter does not work properly when a pure numbers ISBN is input (ISBN without dashes).
 # Does not stop user from inputing invalid or absurd values into function
 
 def isbn_verifier(isbn):
