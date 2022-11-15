@@ -1,5 +1,7 @@
 # ISBN Verifier
-# Bonus tasks has not been done
+# Contains Verifier and Converter
+# Notes:
+# Conversion only works if the ISBN can be verified as True.
 
 def isbn_verifier(isbn):
         """
@@ -24,8 +26,8 @@ def isbn_verifier(isbn):
                 if x == 'X':
                     x = 10
 
-                    isbn_dict.update({counter_num:int(x)})  # Dictonary used for calculations, weights are generated -
-                    counter_num -= 1                        # - with the digits of the ISBN in format weight:digit.
+                isbn_dict.update({counter_num:int(x)})  # Dictonary used for calculations, weights are generated -
+                counter_num -= 1                        # - with the digits of the ISBN in format weight:digit.
 
             isbn_value = 0
 
@@ -73,5 +75,96 @@ def isbn_verifier(isbn):
                 return True
             else:
                 return False
+
+
+def isbn_converter(isbn):
+    """
+    Takes ISBN-10 and -13 as input (string) and converts it.
+    ISBN-10 -> ISBN-13 and ISBN-13 -> ISBN-10.
+    :param isbn: str
+    :return: str
+    """
+
+    isbn_digits_list = list(str(isbn))
+
+    while '-' in isbn_digits_list:
+        isbn_digits_list.remove('-')
+
+    counter_num = len(isbn_digits_list)
+
+    if counter_num == 10 and isbn_verifier(isbn):  # ISBN-10 to ISBN-13, problem has
+
+        counter_num = 12  # Repurpose variable for counting in algo
+
+        isbn = "978-" + isbn[:]
+        isbn = isbn[:-2]  # Remove Check-digit
+
+        isbn_digits_list = list(str(isbn))
+
+        alternation_flag = 0
+        operation_tuple_list = []
+        for x in isbn_digits_list:  # For-loop alternates between to if-statements using alternation flag
+
+            if x.isnumeric() and alternation_flag == 0:
+                operation_tuple_list.append((1, int(x)))
+                counter_num -= 1
+                alternation_flag = 1
+                continue
+
+            if x.isnumeric() and alternation_flag == 1:
+                operation_tuple_list.append((3, int(x)))
+                counter_num -= 1
+                alternation_flag = 0
+                continue
+
+        isbn_value = 0
+
+        for x, y in operation_tuple_list:
+            isbn_value += x * y
+
+        isbn_value = (10 - (isbn_value % 10))  # Check digit calculation
+        if isbn_value == 10:
+            isbn_value = 0
+        isbn = isbn[:] + "-" + str(isbn_value)
+
+        return isbn
+
+    elif counter_num == 13 and isbn_verifier(isbn):  # ISBN-13 to ISBN-10
+
+        if str(isbn[0:3]) == "978":
+
+            isbn = isbn[4:-2]  # Remove "978" and check digit from ISBN string
+
+            isbn_dict = {}
+            isbn_digits_list = list(str(isbn))
+
+            while '-' in isbn_digits_list:
+                isbn_digits_list.remove('-')
+
+            counter_num = 10
+
+            if counter_num == 10:
+                for x in isbn_digits_list:
+                    if x == 'X':
+                        x = 10
+
+                    isbn_dict.update({counter_num: int(x)})
+                    counter_num -= 1
+
+                isbn_value = 0
+            for x in isbn_dict:
+                isbn_value += x * isbn_dict.get(x)
+
+            if (11 - isbn_value % 11 == 10): # Check digit
+                return isbn + "-0"
+            else:
+                return isbn + "-" + str(11 - isbn_value % 11)
+        else:
+            print("ISBN can't be converted")
+
+    else:
+        print("Invalid input")
+
+
 
 
